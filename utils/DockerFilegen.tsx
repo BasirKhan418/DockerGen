@@ -23,6 +23,8 @@ import dockerFilesLatest from './dockerfiles/dockerFilesLatest'
 import { saveAs } from 'file-saver';
 import { Octokit } from "octokit";
 import Link from 'next/link'
+import StreamingDockerfile from "@/components/StreamingDockerfile";
+
 export default function DockerFilegen({userdata,repo,token,islogin,loading}:any) {
     const { theme, setTheme } = useTheme()
   const [gitUrl, setGitUrl] = useState('')
@@ -362,9 +364,11 @@ if(data.status==201){
                     </div>
                   )}
                   <div className="relative">
-                    <pre className="bg-secondary/10 backdrop-blur-sm p-4 rounded-md overflow-x-auto">
-                      <code className="text-sm">{dockerfile}</code>
-                    </pre>
+                    {/*<pre className="bg-secondary/10 backdrop-blur-sm p-4 rounded-md overflow-x-auto">*/}
+                    {/*  <code className="text-sm">{dockerfile}</code>*/}
+                    {/*</pre>*/}
+                    <StreamingDockerfile fullText={dockerfile} />
+
                     <div className="absolute top-2 right-2 space-x-2">
                       <TooltipProvider>
                         <Tooltip>
